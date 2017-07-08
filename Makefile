@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONE: all clean fclean re
+.PHONY: all clean fclean re
 
 NAME = ft_retro
-CPPFILES = main.cpp
+CPPFILES = demo.cpp
 FLAGS = -Wall -Wextra -Werror
 COMPILER = clang++
 RMU = /bin/rm -f
