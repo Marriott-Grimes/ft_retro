@@ -1,11 +1,10 @@
 #include "Star.hpp"
 #include <cstdlib>
-#include <ctime>
 
-Star::Star(int x)
+Star::Star(int x, int s)
 : Entity(x)
 {
-	
+	this->setSpeed(s);
 }
 
 Star::~Star()
@@ -28,25 +27,27 @@ Star&	Star::operator = (Star const& rhs)
 	return (*this);
 }
 
-int		Star::getSpeed()
+int		Star::getSpeed() const
 {
-
+	return (this->_speed);
 }
 
 void	Star::setSpeed(int s)
 {
-
+	this->_speed = s;
 }
 
-void	Star::update()
+void	Star::update(int xMax, int yMax)
 {
-
+	this->move(t_vec2i{0, this->getSpeed()});
+	if (this->getPos().y > yMax)
+		this->resetHeight(xMax);
 }
 
 void	Star::resetHeight(int xMax)
 {
 	int x;
 
-	srand(time(NULL));
-	x = ;
+	x = rand() % xMax;
+	this->setPos
 }

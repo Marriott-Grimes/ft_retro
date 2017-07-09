@@ -9,8 +9,8 @@ class Entity
 {
 
 public:
-
-	Entity(int);
+	Entity(void);
+	Entity(int x, int y);
 	~Entity();
 	Entity(Entity const& obj);
 	Entity&	operator = (Entity const& rhs);

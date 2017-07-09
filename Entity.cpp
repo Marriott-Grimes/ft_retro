@@ -3,9 +3,14 @@
 #include "Entity.hpp"
 #include "ft_retro.hpp"
 
-Entity::Entity(int x)
+Entity::Entity(int x, int y = 0)
 {
-	this->setPos((t_vec2i){x, 0});
+	this->setPos((t_vec2i){x, y});
+}
+
+Entity::Entity()
+{
+	this->setPos((t_vec2i){0, 0});
 }
 
 Entity::~Entity()

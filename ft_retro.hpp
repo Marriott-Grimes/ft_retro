@@ -7,7 +7,7 @@ typedef	struct	s_vec2i
 	int y;
 }				t_vec2i;
 
-t_vec2i	operator + (t_vec2i const& rhs);
+// t_vec2i	operator + (t_vec2i const& rhs);
 
 
 #endif

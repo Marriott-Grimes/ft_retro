@@ -11,7 +11,7 @@ public:
 	Star(Star const& obj);
 	Star&	operator = (Star const& rhs);
 
-	int		getSpeed();
+	int		getSpeed() const;
 	void	setSpeed(int s);
 
 	void	update();
