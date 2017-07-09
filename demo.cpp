@@ -12,6 +12,7 @@ int main()
 	t_vec2i delt;
 	int ch;
 	WINDOW* win;
+	Entity Player;
 
 	srand(time(NULL));
 	win = initscr();
@@ -19,23 +20,13 @@ int main()
 	noecho();
 	curs_set(FALSE);
 	keypad(stdscr, TRUE);
-	Entity Player;
-	// Star	bg[10];
-	// Star	fg[10];
-
- 	// for (int i = 0; i < 10; i++)
- 	// {
- 	// 	bg[i].setSpeed();
- 	// }
- 	// Global var `stdscr` is created by the call to `initscr()`
- 	getmaxyx(stdscr, yMax, xMax);
- 	Player.setSymbol("A");
+	getmaxyx(win, yMax, xMax);
+	Player.setSymbol("A");
 	while (42) {
 		clear();
 		attron(A_BOLD);
-    	box(win, 0, 0);
-    	attroff(A_BOLD);
-		// mvprintw(y, x, "o");
+		box(win, 0, 0);
+		attroff(A_BOLD);
 		Player.draw();
 		refresh();
 		ch = getch();
