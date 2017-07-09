@@ -10,7 +10,7 @@ class Entity
 
 public:
 
-	Entity();
+	Entity(int);
 	~Entity();
 	Entity(Entity const& obj);
 	Entity&	operator = (Entity const& rhs);

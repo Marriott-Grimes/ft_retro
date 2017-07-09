@@ -3,9 +3,9 @@
 #include "Entity.hpp"
 #include "ft_retro.hpp"
 
-Entity::Entity()
+Entity::Entity(int x)
 {
-	this->setPos((t_vec2i){0, 0});
+	this->setPos((t_vec2i){x, 0});
 }
 
 Entity::~Entity()
@@ -16,11 +16,13 @@ Entity::~Entity()
 Entity::Entity(Entity const& obj)
 {
 	this->_pos = obj.getPos();
+	this->_symbol = obj.getSymbol();
 }
 
 Entity&	Entity::operator = (Entity const& rhs)
 {
 	this->_pos = rhs.getPos();
+	this->_symbol = rhs.getSymbol();
 	return (*this);
 }
 

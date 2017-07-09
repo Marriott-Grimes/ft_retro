@@ -1,4 +1,11 @@
 *
 !main.cpp
+!demo.cpp
 !Makefile
+!Entity.cpp
+!Entity.hpp
+!Asteroid.hpp
+!Star.hpp
+!Star.cpp
+!ft_retro.hpp
 !.gitignore

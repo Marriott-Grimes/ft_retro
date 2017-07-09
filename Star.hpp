@@ -6,13 +6,16 @@ class Star: public Entity
 
 public:
 
-	Star(int, int);
+	Star(int);
 	~Star();
 	Star(Star const& obj);
 	Star&	operator = (Star const& rhs);
 
+	int		getSpeed();
+	void	setSpeed(int s);
+
 	void	update();
-	void	resetHeight();
+	void	resetHeight(int yMax);
 
 private:
 
