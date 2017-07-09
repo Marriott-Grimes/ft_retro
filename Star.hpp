@@ -1,7 +1,6 @@
 #ifndef STAR_HPP
 # define STAR_HPP
-
-#include "Entity.hpp"
+# include "Entity.hpp"
 
 class Star: public Entity
 {

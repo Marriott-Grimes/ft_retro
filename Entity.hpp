@@ -23,7 +23,7 @@ public:
 	void	draw();
 	void	move(t_vec2i delta);
 
-private:
+protected:
 
 	t_vec2i		_pos;
 	const char*	_symbol;
