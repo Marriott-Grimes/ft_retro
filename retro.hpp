@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Star.hpp                                           :+:      :+:    :+:   */
+/*   ft_retro.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akalmyko <akalmyko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 11:49:42 by akalmyko          #+#    #+#             */
-/*   Updated: 2017/07/09 11:52:39 by akalmyko         ###   ########.fr       */
+/*   Created: 2017/07/09 11:43:53 by akalmyko          #+#    #+#             */
+/*   Updated: 2017/07/09 11:52:28 by akalmyko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STAR_HPP
-# define STAR_HPP
-# include "retro.hpp"
-# include "Entity.hpp"
-# include <cstdlib>
+#ifndef FT_RETRO_HPP
+# define FT_RETRO_HPP
 
-class Star : public Entity {
 
-public:
+typedef	struct	s_vec2i
+{
+	int x;
+	int y;
+}				t_vec2i;
 
-	Star(void);
-	~Star(void);
-	Star(int x, int s);
-	Star(Star const & obj);
-	Star	&operator=(Star const & rhs);
+// typedef	struct	s_glob
+// {
+// 	Entity player;
+// 	Star	bg[10];
+// 	Star	fg[10];
+// 	int xMax;
+// 	int yMax;
 
-	int		getSpeed(void) const;
-	void	setSpeed(int s);
-	void	update(int xMax, int yMax);
-	void	resetHeight(int yMax);
+// }				t_glob;
 
-protected:
+// t_vec2i	operator + (t_vec2i const& rhs);
 
-private:
-
-	int		_speed;
-
-};
 
 #endif

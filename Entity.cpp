@@ -1,38 +1,52 @@
-#include <ncurses.h>
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Entity.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akalmyko <akalmyko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/09 11:51:42 by akalmyko          #+#    #+#             */
+/*   Updated: 2017/07/09 11:52:22 by akalmyko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Entity.hpp"
-#include "ft_retro.hpp"
+
+/* constructors/desctructors/copier */
+
+Entity::Entity(void)
+{
+	this->setPos((t_vec2i){0, 0});
+	return ;
+}
+
+Entity::~Entity(void)
+{
+	return ;
+}
 
 Entity::Entity(int x, int y = 0)
 {
 	this->setPos((t_vec2i){x, y});
+	return ;
 }
 
-Entity::Entity()
+Entity::Entity(Entity const & obj)
 {
-	this->setPos((t_vec2i){0, 0});
+	*this = obj;
+	return ;
 }
 
-Entity::~Entity()
-{
-
-}
-
-Entity::Entity(Entity const& obj)
-{
-	this->_pos = obj.getPos();
-	this->_symbol = obj.getSymbol();
-}
-
-Entity&	Entity::operator = (Entity const& rhs)
+Entity & Entity::operator=(Entity const & rhs)
 {
 	this->_pos = rhs.getPos();
 	this->_symbol = rhs.getSymbol();
 	return (*this);
 }
 
+/* member methods */
 
-t_vec2i		Entity::getPos() const
+t_vec2i		Entity::getPos(void) const
 {
 	return (this->_pos);
 }
@@ -40,29 +54,33 @@ t_vec2i		Entity::getPos() const
 void	Entity::setPos(t_vec2i p)
 {
 	this->_pos = p;
+	return ;
 }
 
-const char*	Entity::getSymbol() const
+const char*	Entity::getSymbol(void) const
 {
 	return (this->_symbol);
 }
 
-void	Entity::setSymbol(const char* str)
+void	Entity::setSymbol(const char *str)
 {
 	this->_symbol = str;
+	return ;
 }
 
-void	Entity::draw()
+void	Entity::draw(void)
 {
 	t_vec2i p;
 
 	p = this->getPos();
 	mvprintw(p.y, p.x, (const char *)this->getSymbol());
+	return ;
 }
 
 void	Entity::move(t_vec2i delta)
 {
-	t_vec2i newPos;
+	t_vec2i		newPos;
+
 	newPos = this->getPos();
 	newPos.x += delta.x;
 	newPos.y += delta.y;

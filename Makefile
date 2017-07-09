@@ -13,11 +13,10 @@
 .PHONY: all clean fclean re
 
 NAME = ft_retro
-CPPFILES = demo.cpp Entity.cpp Star.cpp
+CPPFILES = main.cpp Entity.cpp Star.cpp
 FLAGS = -Wall -Wextra -Werror
 COMPILER = clang++
 RMU = /bin/rm -f
-# INC = -I /nfs/2016/a/akalmyko/goinfre/brew/opt/ncurses/lib -I /nfs/2016/a/akalmyko/goinfre/brew/opt/ncurses/include
 
 all: $(NAME)
 
