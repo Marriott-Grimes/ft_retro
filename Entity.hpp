@@ -28,6 +28,8 @@ public:
 	void		setPos(t_vec2i pos);
 	const char	*getSymbol() const;
 	void		setSymbol(const char* pos);
+	t_vec2i		getScreenSize(void) const;
+	void		setScreenSize(t_vec2i xyMax);
 
 	void		draw(void);
 	void		move(t_vec2i delta);
@@ -36,6 +38,7 @@ protected:
 
 	t_vec2i		_pos;
 	const char*	_symbol;
+	t_vec2i	_screenSize;
 	// int			_color;
 
 private:

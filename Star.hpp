@@ -22,14 +22,14 @@ public:
 
 	Star(void);
 	~Star(void);
-	Star(int x, int s);
+	Star(int xMax, int yMax);
 	Star(Star const & obj);
 	Star	&operator=(Star const & rhs);
 
 	int		getSpeed(void) const;
 	void	setSpeed(int s);
-	void	update(int xMax, int yMax);
-	void	resetHeight(int yMax);
+	void	update();
+	void	resetHeight();
 
 protected:
 

@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*					                                                    */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -27,27 +27,42 @@ void	ft_check_key()
 
 int main(void)
 {
-	int			xMax = 0;
-	int			yMax = 0;
+	int			xMax = 80;
+	int			yMax = 24;
 	t_vec2i		delt;
 	int			key;
 	WINDOW		*win;
 	Entity		Player;
+	Star	bg[10];
 
-	srand(time(NULL));
+
+	std::srand(time(NULL));
 	win = initscr();
 	cbreak();
 	noecho();
+	clear();
+	refresh();
 	curs_set(FALSE);
-	keypad(stdscr, TRUE);
-	getmaxyx(win, yMax, xMax);
+	keypad(win, TRUE);
+	// getmaxyx(win, yMax, xMax);
+	win  =  newwin(yMax, xMax, 0, 0);
 
 	Player.setSymbol("A");
+	Player.setScreenSize((t_vec2i){xMax, yMax});
+	for (int i = 0; i < 10; i++)
+	{
+		bg[i].setSpeed(1);
+		bg[i].setSymbol(".");
+		bg[i].Entity::setScreenSize((t_vec2i){xMax, yMax});
+		bg[i].Entity::setPos((t_vec2i){rand() % xMax + 1, rand() % yMax + 1});
+	}
 	while (42) {
 		clear();
-		attron(A_BOLD);
-		box(win, 0, 0);
-		attroff(A_BOLD);
+		// attron(A_BOLD);
+		// box(win, 0, 0);
+		// attroff(A_BOLD);
+		for (int i = 0; i < 10; i++)
+			bg[i].update();
 		Player.draw();
 		refresh();
 		key = getch();

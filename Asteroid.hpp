@@ -23,6 +23,8 @@ public:
 	Asteroid(Asteroid const & obj);
 	Asteroid & operator=(Asteroid const & rhs);
 
+	bool	collision(t_vec2i p);
+
 protected:
 
 private:

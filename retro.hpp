@@ -20,17 +20,12 @@ typedef	struct	s_vec2i
 	int y;
 }				t_vec2i;
 
-// typedef	struct	s_glob
-// {
-// 	Entity player;
-// 	Star	bg[10];
-// 	Star	fg[10];
-// 	int xMax;
-// 	int yMax;
+typedef	struct	s_global
+{
+	int xMax;
+	int yMax;
+}				t_global;
 
-// }				t_glob;
-
-// t_vec2i	operator + (t_vec2i const& rhs);
 
 
 #endif

@@ -16,7 +16,7 @@
 
 Entity::Entity(void)
 {
-	this->setPos((t_vec2i){0, 0});
+	this->setPos((t_vec2i){5, 5});
 	return ;
 }
 
@@ -68,6 +68,18 @@ void	Entity::setSymbol(const char *str)
 	return ;
 }
 
+t_vec2i		Entity::getScreenSize(void) const
+{
+	return (this->_screenSize);
+}
+
+void		Entity::setScreenSize(t_vec2i xyMax)
+{
+	this->_screenSize = xyMax;
+	return ;
+}
+
+
 void	Entity::draw(void)
 {
 	t_vec2i p;
@@ -84,5 +96,8 @@ void	Entity::move(t_vec2i delta)
 	newPos = this->getPos();
 	newPos.x += delta.x;
 	newPos.y += delta.y;
-	this->setPos(newPos);
+	if (newPos.x >= 0 && newPos.x <= this->getScreenSize().x
+		&& newPos.y >= 0 && newPos.y <= this->getScreenSize().y)
+		this->setPos(newPos);
+	return ;
 }

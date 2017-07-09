@@ -14,7 +14,8 @@
 
 /* constructors/desctructors/copier */
 
-Star::Star(void) {
+Star::Star(int xMax, int yMax) {
+	this->Entity::setScreenSize((t_vec2i){xMax, yMax});
 	return ;
 }
 
@@ -22,9 +23,8 @@ Star::~Star(void) {
 	return ;
 }
 
-Star::Star(int x, int s) : Entity(x, 0)
+Star::Star()
 {
-	this->setSpeed(s);
 	return ;
 }
 
@@ -38,6 +38,7 @@ Star&	Star::operator=(Star const & rhs)
 {
 	this->Entity::setPos(rhs.Entity::getPos());
 	this->Entity::setSymbol(rhs.Entity::getSymbol());
+	this->Entity::setScreenSize(rhs.Entity::getScreenSize());
 	this->_speed = rhs.getSpeed();
 	return (*this);
 }
@@ -55,19 +56,20 @@ void	Star::setSpeed(int s)
 	return ;
 }
 
-void	Star::update(int xMax, int yMax)
+void	Star::update()
 {
 	this->Entity::move((t_vec2i){0, this->getSpeed()});
-	if (this->Entity::getPos().y > yMax)
-		this->resetHeight(xMax);
+	if (this->Entity::getPos().y >= this->Entity::getScreenSize().y)
+		this->resetHeight();
+	this->Entity::draw();
 	return ;
 }
 
-void	Star::resetHeight(int xMax)
+void	Star::resetHeight()
 {
 	int x;
 
-	x = rand() % xMax;
-	this->Entity::setPos((t_vec2i){x, 0});
+	x = rand() % this->Entity::getScreenSize().x + 1;
+	this->Entity::setPos((t_vec2i){x, 1});
 	return ;
 }
