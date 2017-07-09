@@ -1,39 +1,41 @@
 #include <ncurses.h>
 #include <unistd.h>
+#include "Entity.hpp"
+#include "ft_retro.hpp"
+
 
 int main()
 {
-	int x = 0, y = 0;
 	int xMax = 0, yMax = 0;
-	int deltX = 0, deltY = 0;
+	t_vec2i delt;
 	int ch;
 
 	initscr();
 	noecho();
 	curs_set(FALSE);
 	keypad(stdscr, TRUE);
+	Entity Player;
 
  	// Global var `stdscr` is created by the call to `initscr()`
  	getmaxyx(stdscr, yMax, xMax);
-
+ 	Player.setSymbol("o");
 	while (1) {
 		clear();
-		mvprintw(y, x, "o");
+		// mvprintw(y, x, "o");
+		Player.draw();
 		refresh();
 		ch = getch();
-		usleep(30000);
-		deltX = 0;
-		deltY = 0;
+		usleep(10000);
+		delt = (t_vec2i){0, 0};
 		if (ch == KEY_DOWN)
-			deltY = 1;
+			delt.y = 1;
 		if (ch == KEY_UP)
-			deltY = -1;
+			delt.y = -1;
 		if (ch == KEY_RIGHT)
-			deltX = 1;
+			delt.x = 1;
 		if (ch == KEY_LEFT)
-			deltX = -1;
-		x += deltX;
-		y += deltY;
+			delt.x = -1;
+		Player.move(delt);
 	}
 	endwin();
 }
