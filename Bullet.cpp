@@ -6,7 +6,7 @@ Bullet::Bullet() {
 	this->Entity::setSymbol("*");
 	this->Entity::setPos((t_vec2i){1000, 1000});
 	this->Entity::setScreenSize((t_vec2i){XMAX, YMAX});
-	this->setEnergy(200);
+	this->setEnergy(100);
 	return ;
 }
 
@@ -42,18 +42,18 @@ void	Bullet::recharge()
 {
 	int n;
 
-	n = this->Bullet::getEnergy();
+	n = this->getEnergy();
 	if (n < 100)
-		this->Bullet::setEnergy(n + 1);
+		this->setEnergy(n + 1);
 }
 
 bool	Bullet::fire(t_vec2i playerPos)
 {
-	if (this->Entity::getPos().x == 1000)
+	if (this->getEnergy() >= 100 && this->Entity::getPos().x == 1000)
 	{
 		playerPos.y--;
 		this->Entity::setPos(playerPos);
-		this->setEnergy(0);
+		this->setEnergy(this->getEnergy() - 100);
 		return (true);
 	}
 	return (false);

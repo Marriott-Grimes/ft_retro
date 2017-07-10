@@ -98,7 +98,7 @@ int main(void)
 				bullet[i].Entity::draw();
 			if (!(tick % 10))
 				bullet[i].updateIfActive();
-			// bullet[i].recharge();
+			bullet[i].recharge();
 		}
 		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();
@@ -127,8 +127,6 @@ int main(void)
 					break ;
 			}
 		}
-			// fireBullet(bullet, Player.getPos());
-			// bullet.fire(Player.getPos());	
 		Player.move(readKey(key));
 		tick++;
 	}
