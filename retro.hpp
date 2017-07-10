@@ -13,18 +13,16 @@
 #ifndef FT_RETRO_HPP
 # define FT_RETRO_HPP
 
+#define	NUMSTARS 10
+#define	NUMENEMIES 15
+#define	XMAX 80
+#define	YMAX 24
 
 typedef	struct	s_vec2i
 {
 	int x;
 	int y;
 }				t_vec2i;
-
-typedef	struct	s_global
-{
-	int xMax;
-	int yMax;
-}				t_global;
 
 
 

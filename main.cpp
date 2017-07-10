@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*					                                                    */
+/*					                                                          */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -18,25 +18,11 @@
 #include <iostream>
 #include "Star.hpp"
 #include "Entity.hpp"
-#include "Asteroid.hpp"
+#include "Bullet.hpp"
 
-void	ft_check_key()
+WINDOW* windowSetup()
 {
-
-}
-
-int main(void)
-{
-	int			xMax = 80;
-	int			yMax = 24;
-	t_vec2i		delt;
-	int			key;
 	WINDOW		*win;
-	Entity		Player;
-	Star	bg[10];
-
-
-	std::srand(time(NULL));
 	win = initscr();
 	cbreak();
 	noecho();
@@ -44,41 +30,84 @@ int main(void)
 	refresh();
 	curs_set(FALSE);
 	keypad(win, TRUE);
-	// getmaxyx(win, yMax, xMax);
-	win  =  newwin(yMax, xMax, 0, 0);
+	nodelay(win, true);
+	win = newwin(YMAX, XMAX, 0, 0);
+	return (win);
+}
 
+t_vec2i	readKey(int key)
+{
+	t_vec2i		delt;
+
+	delt = (t_vec2i){0, 0};
+	if (key == 27)
+		exit(0);
+	if (key == KEY_DOWN)
+		delt.y = 1;
+	if (key == KEY_UP)
+		delt.y = -1;
+	if (key == KEY_RIGHT)
+		delt.x = 1;
+	if (key == KEY_LEFT)
+		delt.x = -1;
+	return (delt);
+}
+
+int main(void)
+{
+	
+	int		key;
+	WINDOW	*win;
+	Entity	Player;
+	Star	bg[NUMSTARS];
+	Star	asteroid[NUMENEMIES];
+	Bullet	bullet;
+	int		tick = 0;
+
+
+	std::srand(time(NULL));
+	win = windowSetup();
 	Player.setSymbol("A");
-	Player.setScreenSize((t_vec2i){xMax, yMax});
-	for (int i = 0; i < 10; i++)
+	Player.setPos((t_vec2i){40, 20});
+	Player.setScreenSize((t_vec2i){XMAX, YMAX});
+	for (int i = 0; i < NUMSTARS; i++)
 	{
-		bg[i].setSpeed(1);
 		bg[i].setSymbol(".");
-		bg[i].Entity::setScreenSize((t_vec2i){xMax, yMax});
-		bg[i].Entity::setPos((t_vec2i){rand() % xMax + 1, rand() % yMax + 1});
+		bg[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
+	}
+	for (int i = 0; i < NUMENEMIES; i++)
+	{
+		asteroid[i].setSymbol("*");
+		asteroid[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
 	}
 	while (42) {
 		clear();
-		// attron(A_BOLD);
-		// box(win, 0, 0);
-		// attroff(A_BOLD);
-		for (int i = 0; i < 10; i++)
+		if (!(tick % 100))
+			bullet.updateIfActive();
+		bullet.recharge();
+		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();
+		for (int i = 0; i < NUMENEMIES; i++)
+		{
+			asteroid[i].Entity::draw();
+			if (asteroid[i].Entity::collision(bullet.Entity::getPos()))
+				asteroid[i].resetHeight();
+			if (asteroid[i].Entity::collision(Player.getPos()))
+				exit(0);
+		}
+		if (!(tick % 12))
+		{
+			for (int i = 0; i < NUMENEMIES; i++)
+				asteroid[i].update();
+		}
 		Player.draw();
 		refresh();
 		key = getch();
 		usleep(10000);
-		delt = (t_vec2i){0, 0};
-		if (key == 27)
-			break;
-		if (key == KEY_DOWN)
-			delt.y = 1;
-		if (key == KEY_UP)
-			delt.y = -1;
-		if (key == KEY_RIGHT)
-			delt.x = 1;
-		if (key == KEY_LEFT)
-			delt.x = -1;
-		Player.move(delt);
+		if (key == ' ')
+			bullet.fire(Player.getPos());	
+		Player.move(readKey(key));
+		tick++;
 	}
 	endwin();
 }

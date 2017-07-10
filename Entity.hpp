@@ -33,13 +33,13 @@ public:
 
 	void		draw(void);
 	void		move(t_vec2i delta);
+	bool		collision(t_vec2i p);
 
 protected:
 
 	t_vec2i		_pos;
 	const char*	_symbol;
 	t_vec2i	_screenSize;
-	// int			_color;
 
 private:
 

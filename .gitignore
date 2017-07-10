@@ -1,7 +1,8 @@
 *
-!Asteroid.hpp
 !Entity.cpp
 !Entity.hpp
+!Bullet.cpp
+!Bullet.hpp
 !Makefile
 !Star.cpp
 !Star.hpp

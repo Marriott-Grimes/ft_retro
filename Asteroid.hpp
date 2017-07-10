@@ -13,6 +13,8 @@
 #ifndef ASTEROID_HPP
 # define ASTEROID_HPP
 # include "retro.hpp"
+# include "Star.hpp"
+# include "Entity.hpp"
 
 class Asteroid: public Star {
 
@@ -22,8 +24,6 @@ public:
 	~Asteroid(void);
 	Asteroid(Asteroid const & obj);
 	Asteroid & operator=(Asteroid const & rhs);
-
-	bool	collision(t_vec2i p);
 
 protected:
 

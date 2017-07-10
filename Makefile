@@ -13,7 +13,7 @@
 .PHONY: all clean fclean re
 
 NAME = ft_retro
-CPPFILES = main.cpp Entity.cpp Star.cpp
+CPPFILES = main.cpp Entity.cpp Star.cpp Bullet.cpp
 FLAGS = -Wall -Wextra -Werror
 COMPILER = clang++
 RMU = /bin/rm -f

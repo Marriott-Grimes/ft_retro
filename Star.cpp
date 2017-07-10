@@ -58,7 +58,7 @@ void	Star::setSpeed(int s)
 
 void	Star::update()
 {
-	this->Entity::move((t_vec2i){0, this->getSpeed()});
+	this->Entity::move((t_vec2i){0, 1});
 	if (this->Entity::getPos().y >= this->Entity::getScreenSize().y)
 		this->resetHeight();
 	this->Entity::draw();
@@ -68,8 +68,10 @@ void	Star::update()
 void	Star::resetHeight()
 {
 	int x;
+	t_vec2i sSize;
 
-	x = rand() % this->Entity::getScreenSize().x + 1;
-	this->Entity::setPos((t_vec2i){x, 1});
+	sSize = this->Entity::getScreenSize();
+	x = rand() % sSize.x + 1;
+	this->Entity::setPos((t_vec2i){x, rand() % sSize.y - sSize.y});
 	return ;
 }

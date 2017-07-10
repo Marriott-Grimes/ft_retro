@@ -17,6 +17,7 @@
 Entity::Entity(void)
 {
 	this->setPos((t_vec2i){5, 5});
+	this->Entity::setScreenSize((t_vec2i){XMAX, YMAX});
 	return ;
 }
 
@@ -97,7 +98,14 @@ void	Entity::move(t_vec2i delta)
 	newPos.x += delta.x;
 	newPos.y += delta.y;
 	if (newPos.x >= 0 && newPos.x <= this->getScreenSize().x
-		&& newPos.y >= 0 && newPos.y <= this->getScreenSize().y)
+		&& newPos.y <= this->getScreenSize().y)
 		this->setPos(newPos);
 	return ;
+}
+
+bool	Entity::collision(t_vec2i p)
+{
+	if (p.x == this->getPos().x && p.y == this->getPos().y)
+		return (true);
+	return (false);
 }
