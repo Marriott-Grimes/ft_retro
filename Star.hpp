@@ -21,7 +21,7 @@ class Star : public Entity {
 public:
 
 	Star(void);
-	~Star(void);
+	virtual	~Star(void);
 	Star(int xMax, int yMax);
 	Star(Star const & obj);
 	Star	&operator=(Star const & rhs);

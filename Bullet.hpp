@@ -21,7 +21,7 @@ class Bullet: public Entity {
 public:
 
 	Bullet(void);
-	~Bullet(void);
+	virtual	~Bullet(void);
 	Bullet(Bullet const & obj);
 	Bullet & operator=(Bullet const & rhs);
 
