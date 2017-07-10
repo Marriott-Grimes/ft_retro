@@ -67,6 +67,8 @@ int main(void)
 
 	std::srand(time(NULL));
 	win = windowSetup();
+	// init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	// init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	Player.setSymbol("A");
 	Player.setPos((t_vec2i){40, 20});
 	Player.setScreenSize((t_vec2i){XMAX, YMAX});
@@ -82,8 +84,10 @@ int main(void)
 	}
 	while (42) {
 		clear();
-		if (!(tick % 100))
+		// wattron(win, COLOR_PAIR(2));
+		if (!(tick % 50))
 			bullet.updateIfActive();
+		// wattroff(win, COLOR_PAIR(2));
 		bullet.recharge();
 		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();

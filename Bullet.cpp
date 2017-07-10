@@ -1,5 +1,6 @@
 #include "Bullet.hpp"
 # include "Entity.hpp"
+# include <ncurses.h>
 
 Bullet::Bullet() {
 	this->Entity::setSymbol("|");
