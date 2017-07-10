@@ -19,14 +19,13 @@ public:
 	void	setNum(int n);
 
 	void	recharge();
-	void	fire(t_vec2i p);
+	bool	fire(t_vec2i p);
 	void	despawn();
 	void	updateIfActive();
 
 protected:
 
 	int _energy;
-	// static int _numActive;
 private:
 
 };

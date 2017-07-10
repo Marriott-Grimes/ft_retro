@@ -15,6 +15,7 @@
 
 #define	NUMSTARS 10
 #define	NUMENEMIES 15
+#define	NUMBULLETS 30
 #define	XMAX 80
 #define	YMAX 24
 

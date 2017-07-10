@@ -53,6 +53,24 @@ t_vec2i	readKey(int key)
 	return (delt);
 }
 
+void	initStars(Star	bg[NUMSTARS])
+{
+	for (int i = 0; i < NUMSTARS; i++)
+	{
+		bg[i].setSymbol(".");
+		bg[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
+	}
+}
+
+void	initAsteroids(Star	asteroid[NUMENEMIES])
+{
+	for (int i = 0; i < NUMENEMIES; i++)
+	{
+		asteroid[i].setSymbol("O");
+		asteroid[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
+	}
+}
+
 int main(void)
 {
 	
@@ -61,7 +79,7 @@ int main(void)
 	Entity	Player;
 	Star	bg[NUMSTARS];
 	Star	asteroid[NUMENEMIES];
-	Bullet	bullet;
+	Bullet	bullet[NUMBULLETS];
 	int		tick = 0;
 
 
@@ -70,36 +88,31 @@ int main(void)
 	Player.setSymbol("A");
 	Player.setPos((t_vec2i){40, 20});
 	Player.setScreenSize((t_vec2i){XMAX, YMAX});
-	for (int i = 0; i < NUMSTARS; i++)
-	{
-		bg[i].setSymbol(".");
-		bg[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
-	}
-	for (int i = 0; i < NUMENEMIES; i++)
-	{
-		asteroid[i].setSymbol("O");
-		asteroid[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
-	}
+	initStars(bg);
+	initAsteroids(asteroid);
 	while (42) {
 		clear();
-		if (bullet.Entity::getPos().x != 1000)
-			bullet.Entity::draw();
-		if (!(tick % 10))
-			bullet.updateIfActive();
-		bullet.recharge();
+		for (int i = 0; i < NUMBULLETS; i++)
+		{
+			if (bullet[i].Entity::getPos().x != 1000)
+				bullet[i].Entity::draw();
+			if (!(tick % 10))
+				bullet[i].updateIfActive();
+			// bullet[i].recharge();
+		}
 		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();
 		for (int i = 0; i < NUMENEMIES; i++)
 		{
 			asteroid[i].Entity::draw();
-			if (asteroid[i].Entity::collision(bullet.Entity::getPos()))
-				asteroid[i].resetHeight();
+			for (int j = 0; j < NUMBULLETS; j++)
+			{
+				if (asteroid[i].Entity::collision(bullet[j].Entity::getPos()))
+					asteroid[i].resetHeight();
+			}
 			if (asteroid[i].Entity::collision(Player.getPos()))
 				exit(0);
-		}
-		if (!(tick % 20))
-		{
-			for (int i = 0; i < NUMENEMIES; i++)
+			if (!(tick % 20))
 				asteroid[i].update();
 		}
 		Player.draw();
@@ -107,7 +120,15 @@ int main(void)
 		key = getch();
 		usleep(10000);
 		if (key == ' ')
-			bullet.fire(Player.getPos());	
+		{
+			for (int i = 0; i < NUMBULLETS; i++)
+			{
+				if (bullet[i].fire(Player.getPos()))
+					break ;
+			}
+		}
+			// fireBullet(bullet, Player.getPos());
+			// bullet.fire(Player.getPos());	
 		Player.move(readKey(key));
 		tick++;
 	}
