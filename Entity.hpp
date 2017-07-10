@@ -19,7 +19,7 @@ class Entity {
 
 public:
 	Entity(void);
-	~Entity(void);
+	virtual	~Entity(void);
 	Entity(int x, int y);
 	Entity(Entity const & obj);
 	Entity 		&operator=(Entity const & rhs);
