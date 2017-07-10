@@ -77,11 +77,13 @@ int main(void)
 	}
 	for (int i = 0; i < NUMENEMIES; i++)
 	{
-		asteroid[i].setSymbol("*");
+		asteroid[i].setSymbol("O");
 		asteroid[i].Entity::setPos((t_vec2i){rand() % XMAX, rand() % YMAX + 1});
 	}
 	while (42) {
 		clear();
+		if (bullet.Entity::getPos().x != 1000)
+			bullet.Entity::draw();
 		if (!(tick % 10))
 			bullet.updateIfActive();
 		bullet.recharge();

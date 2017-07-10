@@ -3,7 +3,7 @@
 # include <ncurses.h>
 
 Bullet::Bullet() {
-	this->Entity::setSymbol("|");
+	this->Entity::setSymbol("*");
 	this->Entity::setPos((t_vec2i){1000, 1000});
 	this->Entity::setScreenSize((t_vec2i){XMAX, YMAX});
 	return ;
@@ -48,7 +48,7 @@ void	Bullet::recharge()
 
 void	Bullet::fire(t_vec2i playerPos)
 {
-	if (this->getEnergy() == 100)
+	if (this->getEnergy() == 100 && this->Entity::getPos().x == 1000)
 	{
 		playerPos.y--;
 		this->Entity::setPos(playerPos);
