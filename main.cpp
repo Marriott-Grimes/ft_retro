@@ -97,8 +97,10 @@ int main(void)
 			if (bullet[i].Entity::getPos().x != 1000)
 				bullet[i].Entity::draw();
 			if (!(tick % 10))
+			{
 				bullet[i].updateIfActive();
-			bullet[i].recharge();
+				bullet[i].recharge();
+			}
 		}
 		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();
@@ -111,7 +113,11 @@ int main(void)
 					asteroid[i].resetHeight();
 			}
 			if (asteroid[i].Entity::collision(Player.getPos()))
+			{
+				delwin(win);
+				endwin();
 				exit(0);
+			}
 			if (!(tick % 20))
 				asteroid[i].update();
 		}
@@ -130,5 +136,6 @@ int main(void)
 		Player.move(readKey(key));
 		tick++;
 	}
+	delwin(win);
 	endwin();
 }
