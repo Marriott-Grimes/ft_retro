@@ -30,14 +30,14 @@ public:
 	int		getNum(void) const;
 	void	setNum(int n);
 
-	void	recharge();
+	void	recharge(void);
 	bool	fire(t_vec2i p);
-	void	despawn();
-	void	updateIfActive();
+	void	despawn(void);
+	void	updateIfActive(void);
 
 protected:
-
 	int _energy;
+
 private:
 
 };

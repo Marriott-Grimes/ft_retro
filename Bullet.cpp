@@ -14,7 +14,7 @@
 # include "Entity.hpp"
 # include <ncurses.h>
 
-Bullet::Bullet() {
+Bullet::Bullet(void) {
 	this->Entity::setSymbol("*");
 	this->Entity::setPos((t_vec2i){1000, 1000});
 	this->Entity::setScreenSize((t_vec2i){XMAX, YMAX});
@@ -32,7 +32,7 @@ Bullet::Bullet(Bullet const & obj)
 	return ;
 }
 
-Bullet&	Bullet::operator=(Bullet const & rhs)
+Bullet &	Bullet::operator=(Bullet const & rhs)
 {
 	this->Entity::setPos(rhs.Entity::getPos());
 	this->Entity::setSymbol(rhs.Entity::getSymbol());
@@ -50,7 +50,7 @@ void	Bullet::setEnergy(int n)
 	this->_energy = n;
 }
 
-void	Bullet::recharge()
+void	Bullet::recharge(void)
 {
 	int n;
 
@@ -71,12 +71,12 @@ bool	Bullet::fire(t_vec2i playerPos)
 	return (false);
 }
 
-void	Bullet::despawn()
+void	Bullet::despawn(void)
 {
 	this->Entity::setPos((t_vec2i){1000, 1000});
 }
 
-void	Bullet::updateIfActive()
+void	Bullet::updateIfActive(void)
 {
 	t_vec2i p;
 
