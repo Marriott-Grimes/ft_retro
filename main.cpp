@@ -67,8 +67,6 @@ int main(void)
 
 	std::srand(time(NULL));
 	win = windowSetup();
-	// init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	// init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	Player.setSymbol("A");
 	Player.setPos((t_vec2i){40, 20});
 	Player.setScreenSize((t_vec2i){XMAX, YMAX});
@@ -84,10 +82,8 @@ int main(void)
 	}
 	while (42) {
 		clear();
-		// wattron(win, COLOR_PAIR(2));
-		if (!(tick % 50))
+		if (!(tick % 10))
 			bullet.updateIfActive();
-		// wattroff(win, COLOR_PAIR(2));
 		bullet.recharge();
 		for (int i = 0; i < NUMSTARS; i++)
 			bg[i].update();
@@ -99,7 +95,7 @@ int main(void)
 			if (asteroid[i].Entity::collision(Player.getPos()))
 				exit(0);
 		}
-		if (!(tick % 12))
+		if (!(tick % 20))
 		{
 			for (int i = 0; i < NUMENEMIES; i++)
 				asteroid[i].update();

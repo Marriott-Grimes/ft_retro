@@ -31,7 +31,7 @@ public:
 	t_vec2i		getScreenSize(void) const;
 	void		setScreenSize(t_vec2i xyMax);
 
-	void		draw(void);
+	void		draw();
 	void		move(t_vec2i delta);
 	bool		collision(t_vec2i p);
 
@@ -39,7 +39,8 @@ protected:
 
 	t_vec2i		_pos;
 	const char*	_symbol;
-	t_vec2i	_screenSize;
+	t_vec2i		_screenSize;
+	WINDOW*		_win;
 
 private:
 

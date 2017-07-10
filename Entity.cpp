@@ -80,8 +80,7 @@ void		Entity::setScreenSize(t_vec2i xyMax)
 	return ;
 }
 
-
-void	Entity::draw(void)
+void	Entity::draw()
 {
 	t_vec2i p;
 
