@@ -138,4 +138,5 @@ int main(void)
 	}
 	delwin(win);
 	endwin();
+	return (0);
 }
