@@ -35,13 +35,17 @@ WINDOW* windowSetup()
 	return (win);
 }
 
-t_vec2i	readKey(int key)
+t_vec2i	readKey(int key, WINDOW* win)
 {
 	t_vec2i		delt;
 
 	delt = (t_vec2i){0, 0};
 	if (key == 27)
+	{
+		delwin(win);
+		endwin();
 		exit(0);
+	}
 	if (key == KEY_DOWN)
 		delt.y = 1;
 	if (key == KEY_UP)
@@ -133,7 +137,7 @@ int main(void)
 					break ;
 			}
 		}
-		Player.move(readKey(key));
+		Player.move(readKey(key, win));
 		tick++;
 	}
 	delwin(win);
